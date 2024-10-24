@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sayı Tahmin Oyunu</title>
+</head>
+<body>
+    <h1>Sayı Tahmin Oyunu</h1>
+    <p>1 ile 100 arasında bir sayı tuttum, bakalım tahmin edebilecek misin?</p>
+
+    <input type="number" id="guessInput" placeholder="Tahmininizi girin" />
+    <button onclick="makeGuess()">Tahmin Et</button>
+
+    <p id="result"></p>
+    <p>Kalan tahmin hakkınız: <span id="guessesLeft">5</span></p>
+
+    <script>
+        const randomNumber = Math.floor(Math.random() * 100) + 1;
+        let guessesLeft = 5;
+
+        function makeGuess() {
+            const guess = parseInt(document.getElementById('guessInput').value);
+            const result = document.getElementById('result');
+
+            if (!guess || guess < 1 || guess > 100) {
+                result.textContent = 'Lütfen 1 ile 100 arasında bir sayı girin.';
+                return;
+            }
+
+            guessesLeft--;
+            document.getElementById('guessesLeft').textContent = guessesLeft;
+
+            if (guess === randomNumber) {
+                result.textContent = 'Tebrikler! Doğru tahmin ettiniz!';
+            } else if (guessesLeft === 0) {
+                result.textContent = 'Üzgünüm, tahmin hakkınız bitti. Sayı: ' + randomNumber;
+            } else if (guess < randomNumber) {
+                result.textContent = 'Daha yüksek bir sayı girin.';
+            } else {
+                result.textContent = 'Daha düşük bir sayı girin.';
+            }
+        }
+    </script>
+</body>
+</html>
