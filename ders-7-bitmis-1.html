@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Köpek Görselleri</title>
+    <style>
+    body {
+        text-align: center;
+    }
+
+    #fotograflar {
+        column-count: 3;
+        column-gap: 15px;
+    }
+    
+    #fotograflar img {
+        width: 100%;
+        height: auto;
+        display: block;
+        border: 1px solid #000;
+    }
+    
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Kedi Görselleri</h1>
+        <div id="fotograflar"></div>
+        <button onclick="fotograflariYukle()">Görselleri Getir</button>
+    </div>
+    <script>
+        async function fotograflariYukle() {
+            const url = `https://api.thecatapi.com/v1/images/search?limit=10`;
+
+            const response = await fetch(url);
+            const data = await response.json();
+
+            const fotograflar = document.getElementById("fotograflar");
+            // fotograflar.innerHTML = "";
+
+            data.forEach((dog) => {
+                const img = document.createElement("img");
+                img.src = dog.url;
+                img.alt = "Köpek Görseli";
+                img.className = "dog-image";
+                img.width = dog.width;
+                img.height = dog.height;
+                fotograflar.appendChild(img);
+            });
+        }
+
+    </script>
+</body>
+</html>

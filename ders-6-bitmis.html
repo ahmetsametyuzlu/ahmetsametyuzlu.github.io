@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hava Durumu Uygulaması</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #e0f7fa;
+        }
+
+        .weather-app {
+            text-align: center;
+            background-color: #ffffff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        input, button {
+            padding: 10px;
+            margin: 10px;
+            font-size: 16px;
+        }
+
+        button {
+            background-color: #00796b;
+            color: white;
+            border: none;
+            cursor: pointer;
+            border-radius: 4px;
+        }
+
+        button:hover {
+            background-color: #004d40;
+        }
+
+        #weatherResult {
+            margin-top: 20px;
+            font-size: 18px;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="weather-app">
+        <h1>Hava Durumu Uygulaması</h1>
+        <input type="text" id="city" placeholder="Şehir Adı">
+        <button onclick="getWeather()">Hava Durumunu Göster</button>
+        <div id="weatherResult"></div>
+    </div>
+    <script>
+        async function getWeather() {
+            const city = document.getElementById("city").value;
+            const apiKey = 'b4d46b432a3b44929d4114319243010'; // WeatherAPI API anahtarınızı buraya ekleyin
+            const url = `https://api.weatherapi.com/v1/current.json?key=${apiKey}&q=${city}&lang=tr`;
+
+            try {
+                const response = await fetch(url);
+                const data = await response.json();
+
+                if (response.ok) {
+                    const weatherInfo = `
+                        <h2>${data.location.name}, ${data.location.country}</h2>
+                        <p>Durum: ${data.current.condition.text}</p>
+                        <p>Sıcaklık: ${data.current.temp_c} °C</p>
+                        <p>Nem: ${data.current.humidity}%</p>
+                        <p>Rüzgar Hızı: ${data.current.wind_kph} km/h</p>
+                    `;
+                    document.getElementById("weatherResult").innerHTML = weatherInfo;
+                } else {
+                    document.getElementById("weatherResult").innerHTML = `<p>Şehir bulunamadı!</p>`;
+                }
+            } catch (error) {
+                document.getElementById("weatherResult").innerHTML = `<p>Bir hata oluştu. Lütfen tekrar deneyin.</p>`;
+                console.error(error);
+            }
+        }
+    </script>
+</body>
+</html>

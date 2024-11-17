@@ -1,0 +1,57 @@
+<html>
+    <head>
+        <title>Grid Layout</title>
+        <style>
+            body {
+                display: grid;
+                grid-template: 
+                    "Hdr Asd"
+                    "Man Asd"
+                    "Ftr Asd"  ;
+                grid-template-columns: auto 250px;
+                grid-template-rows: 100px auto 100px;
+                gap: 10px;
+            }
+
+            header {
+                grid-area: Hdr;
+                background: red;
+            }
+            main {
+                grid-area: Man;
+                background: blue;
+            }
+            aside {
+                grid-area: Asd;
+                background: green;
+            }
+            footer {
+                grid-area: Ftr;
+                background: pink;
+            }
+
+            @media (max-width: 600px) {
+                body {
+                    display: grid;
+                    grid-template: 
+                        "Hdr"
+                        "Man"
+                        "Ftr"  ;
+                    grid-template-columns: auto;
+                    grid-template-rows: 100px auto 100px;
+                    gap: 10px;
+                }
+                aside {
+                    display: none;
+                }
+            }
+
+        </style>
+    </head>
+    <body>
+        <header>Header</header>
+        <main>Main Alan</main>
+        <aside>Linkler</aside>
+        <footer>Sayfa ile ilgili yasal bilgiler</footer>
+    </body>
+</html>
