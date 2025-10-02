@@ -1,1 +1,621 @@
-merhaba dunya
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ankarabilim Üniversitesi - Ana Sayfa</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f8f9fa;
+        }
+
+        /* Header */
+        .header {
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+            color: white;
+            padding: 1rem 0;
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            box-shadow: 0 2px 20px rgba(0,0,0,0.1);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: white;
+            text-decoration: none;
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-menu a {
+            color: white;
+            text-decoration: none;
+            transition: color 0.3s ease;
+            font-weight: 500;
+        }
+
+        .nav-menu a:hover {
+            color: #ffd700;
+        }
+
+        .hamburger {
+            display: none;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(rgba(30, 60, 114, 0.8), rgba(42, 82, 152, 0.8)), 
+                        url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 600"><rect fill="%23f0f8ff" width="1200" height="600"/><path fill="%23e6f3ff" d="M0,300 Q300,200 600,300 T1200,300 L1200,600 L0,600 Z"/></svg>');
+            background-size: cover;
+            background-position: center;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            text-align: center;
+            color: white;
+        }
+
+        .hero-content h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            animation: fadeInUp 1s ease;
+        }
+
+        .hero-content p {
+            font-size: 1.3rem;
+            margin-bottom: 2rem;
+            animation: fadeInUp 1s ease 0.3s both;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 12px 30px;
+            background: #ffd700;
+            color: #1e3c72;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            animation: fadeInUp 1s ease 0.6s both;
+        }
+
+        .btn:hover {
+            background: #ffed4e;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(255, 215, 0, 0.4);
+        }
+
+        /* About Section */
+        .about {
+            padding: 100px 0;
+            background: white;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            color: #1e3c72;
+        }
+
+        .about-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 3rem;
+            margin-top: 3rem;
+        }
+
+        .about-card {
+            background: #f8f9fa;
+            padding: 2rem;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .about-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .about-card i {
+            font-size: 3rem;
+            color: #2a5298;
+            margin-bottom: 1rem;
+        }
+
+        .about-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: #1e3c72;
+        }
+
+        /* Programs Section */
+        .programs {
+            padding: 100px 0;
+            background: #f8f9fa;
+        }
+
+        .programs-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .program-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .program-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .program-header {
+            background: linear-gradient(135deg, #1e3c72, #2a5298);
+            color: white;
+            padding: 1.5rem;
+        }
+
+        .program-body {
+            padding: 1.5rem;
+        }
+
+        .program-card h3 {
+            margin-bottom: 0.5rem;
+        }
+
+        /* News Section */
+        .news {
+            padding: 100px 0;
+            background: white;
+        }
+
+        .news-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .news-card {
+            background: #f8f9fa;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .news-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .news-date {
+            background: #1e3c72;
+            color: white;
+            padding: 1rem;
+            font-weight: bold;
+        }
+
+        .news-content {
+            padding: 1.5rem;
+        }
+
+        /* Contact Section */
+        .contact {
+            padding: 100px 0;
+            background: linear-gradient(135deg, #1e3c72, #2a5298);
+            color: white;
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 3rem;
+            margin-top: 3rem;
+        }
+
+        .contact-info {
+            text-align: center;
+        }
+
+        .contact-info i {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            color: #ffd700;
+        }
+
+        .contact-info h3 {
+            margin-bottom: 1rem;
+        }
+
+        /* Footer */
+        .footer {
+            background: #1a1a1a;
+            color: white;
+            text-align: center;
+            padding: 2rem 0;
+        }
+
+        .social-links {
+            margin: 1rem 0;
+        }
+
+        .social-links a {
+            color: white;
+            font-size: 1.5rem;
+            margin: 0 1rem;
+            transition: color 0.3s ease;
+        }
+
+        .social-links a:hover {
+            color: #ffd700;
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.6s ease;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .hamburger {
+                display: block;
+            }
+
+            .nav-menu {
+                position: fixed;
+                top: 100%;
+                left: -100%;
+                width: 100%;
+                height: 100vh;
+                background: #1e3c72;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                transition: left 0.3s ease;
+            }
+
+            .nav-menu.active {
+                left: 0;
+            }
+
+            .hero-content h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero-content p {
+                font-size: 1.1rem;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+
+            .about-grid,
+            .programs-grid,
+            .news-grid,
+            .contact-grid {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <nav class="container">
+            <div class="nav">
+                <a href="#" class="logo">
+                    <i class="fas fa-graduation-cap"></i> Ankarabilim Üniversitesi
+                </a>
+                <ul class="nav-menu">
+                    <li><a href="#ana-sayfa">Ana Sayfa</a></li>
+                    <li><a href="#hakkimizda">Hakkımızda</a></li>
+                    <li><a href="#programlar">Programlar</a></li>
+                    <li><a href="#haberler">Haberler</a></li>
+                    <li><a href="#iletisim">İletişim</a></li>
+                </ul>
+                <button class="hamburger">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="ana-sayfa" class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1>Ankarabilim Üniversitesi</h1>
+                <p>Geleceğin liderlerini yetiştiren, araştırma ve inovasyonda öncü üniversite</p>
+                <a href="#hakkimizda" class="btn">Keşfedin</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="hakkimizda" class="about">
+        <div class="container">
+            <h2 class="section-title fade-in">Neden Ankarabilim?</h2>
+            <div class="about-grid">
+                <div class="about-card fade-in">
+                    <i class="fas fa-award"></i>
+                    <h3>Kaliteli Eğitim</h3>
+                    <p>Alanında uzman öğretim üyeleri ile dünya standartlarında eğitim sunuyoruz.</p>
+                </div>
+                <div class="about-card fade-in">
+                    <i class="fas fa-microscope"></i>
+                    <h3>Araştırma</h3>
+                    <p>Modern laboratuvarlar ve araştırma merkezleri ile bilime katkı sağlıyoruz.</p>
+                </div>
+                <div class="about-card fade-in">
+                    <i class="fas fa-globe"></i>
+                    <h3>Uluslararası İşbirliği</h3>
+                    <p>Dünya çapında üniversiteler ile işbirliği yaparak global perspektif sunuyoruz.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Programs Section -->
+    <section id="programlar" class="programs">
+        <div class="container">
+            <h2 class="section-title fade-in">Akademik Programlar</h2>
+            <div class="programs-grid">
+                <div class="program-card fade-in">
+                    <div class="program-header">
+                        <h3>Mühendislik Fakültesi</h3>
+                    </div>
+                    <div class="program-body">
+                        <ul>
+                            <li>Bilgisayar Mühendisliği</li>
+                            <li>Elektrik-Elektronik Mühendisliği</li>
+                            <li>Makine Mühendisliği</li>
+                            <li>İnşaat Mühendisliği</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="program-card fade-in">
+                    <div class="program-header">
+                        <h3>Tıp Fakültesi</h3>
+                    </div>
+                    <div class="program-body">
+                        <ul>
+                            <li>Tıp (Türkçe)</li>
+                            <li>Tıp (İngilizce)</li>
+                            <li>Diş Hekimliği</li>
+                            <li>Eczacılık</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="program-card fade-in">
+                    <div class="program-header">
+                        <h3>İktisadi ve İdari Bilimler</h3>
+                    </div>
+                    <div class="program-body">
+                        <ul>
+                            <li>İşletme</li>
+                            <li>Ekonomi</li>
+                            <li>Uluslararası İlişkiler</li>
+                            <li>Kamu Yönetimi</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="program-card fade-in">
+                    <div class="program-header">
+                        <h3>Fen Edebiyat Fakültesi</h3>
+                    </div>
+                    <div class="program-body">
+                        <ul>
+                            <li>Matematik</li>
+                            <li>Fizik</li>
+                            <li>Kimya</li>
+                            <li>Biyoloji</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- News Section -->
+    <section id="haberler" class="news">
+        <div class="container">
+            <h2 class="section-title fade-in">Haberler ve Duyurular</h2>
+            <div class="news-grid">
+                <div class="news-card fade-in">
+                    <div class="news-date">
+                        <i class="fas fa-calendar"></i> 28 Eylül 2025
+                    </div>
+                    <div class="news-content">
+                        <h3>Yeni Akademik Yıl Başladı</h3>
+                        <p>2025-2026 akademik yılı törenle başladı. Yeni öğrencilerimizi kampüsümüzde ağırlıyoruz.</p>
+                    </div>
+                </div>
+                <div class="news-card fade-in">
+                    <div class="news-date">
+                        <i class="fas fa-calendar"></i> 25 Eylül 2025
+                    </div>
+                    <div class="news-content">
+                        <h3>Araştırma Merkezi Açılışı</h3>
+                        <p>Yapay Zeka ve Robotik Araştırma Merkezi hizmete girdi. Modern teknolojilerle donatılan merkez öğrencilerimizin hizmetinde.</p>
+                    </div>
+                </div>
+                <div class="news-card fade-in">
+                    <div class="news-date">
+                        <i class="fas fa-calendar"></i> 20 Eylül 2025
+                    </div>
+                    <div class="news-content">
+                        <h3>Uluslararası İşbirliği</h3>
+                        <p>Oxford Üniversitesi ile işbirliği anlaşması imzalandı. Öğrenci ve öğretim üyesi değişim programları başlıyor.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="iletisim" class="contact">
+        <div class="container">
+            <h2 class="section-title fade-in">İletişim</h2>
+            <div class="contact-grid">
+                <div class="contact-info fade-in">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <h3>Adres</h3>
+                    <p>Ankarabilim Üniversitesi<br>
+                    Çankaya, Ankara<br>
+                    Türkiye</p>
+                </div>
+                <div class="contact-info fade-in">
+                    <i class="fas fa-phone"></i>
+                    <h3>Telefon</h3>
+                    <p>+90 (312) 123 45 67<br>
+                    +90 (312) 123 45 68</p>
+                </div>
+                <div class="contact-info fade-in">
+                    <i class="fas fa-envelope"></i>
+                    <h3>E-posta</h3>
+                    <p>info@ankarabilim.edu.tr<br>
+                    ogrenci@ankarabilim.edu.tr</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="social-links">
+                <a href="#"><i class="fab fa-facebook"></i></a>
+                <a href="#"><i class="fab fa-twitter"></i></a>
+                <a href="#"><i class="fab fa-instagram"></i></a>
+                <a href="#"><i class="fab fa-linkedin"></i></a>
+                <a href="#"><i class="fab fa-youtube"></i></a>
+            </div>
+            <p>&copy; 2025 Ankarabilim Üniversitesi. Tüm hakları saklıdır.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile menu toggle
+        const hamburger = document.querySelector('.hamburger');
+        const navMenu = document.querySelector('.nav-menu');
+
+        hamburger.addEventListener('click', () => {
+            navMenu.classList.toggle('active');
+        });
+
+        // Close mobile menu when clicking on a link
+        document.querySelectorAll('.nav-menu a').forEach(link => {
+            link.addEventListener('click', () => {
+                navMenu.classList.remove('active');
+            });
+        });
+
+        // Smooth scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Fade in animation on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.fade-in').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Header background change on scroll
+        window.addEventListener('scroll', () => {
+            const header = document.querySelector('.header');
+            if (window.scrollY > 100) {
+                header.style.background = 'rgba(30, 60, 114, 0.95)';
+            } else {
+                header.style.background = 'linear-gradient(135deg, #1e3c72 0%, #2a5298 100%)';
+            }
+        });
+
+        // Add loading animation
+        window.addEventListener('load', () => {
+            document.body.style.opacity = '1';
+        });
+    </script>
+</body>
+</html>
